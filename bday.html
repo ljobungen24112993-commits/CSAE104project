@@ -1,0 +1,1031 @@
+<html>
+
+<head>
+    <style>
+         :root {
+            --col-0: red;
+            --col-1: yellow;
+            --col-2: pink;
+            --col-3: purple;
+            --col-4: black;
+            --col-5: orange;
+            --col-6: blue;
+        }
+        
+        h1 {
+            text-align: center;
+            margin: 10px 0 20px 0;
+        }
+        
+        body {
+            background-color: #dff3f4;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            transition: background-image 0.5s ease-in-out;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        table {
+            background-color: rgba(240, 238, 235, 0.1);
+            width: 100%;
+            table-layout: fixed;
+        }
+        
+        table table {
+            background-color: rgba(255, 255, 255, 0.5);
+            width: 100%;
+            table-layout: fixed;
+        }
+        
+        td,
+        th {
+            text-align: center;
+        }
+        
+        .holiday:hover,
+        .birthday-cell:hover {
+            font-weight: bold;
+            font-style: italic;
+            cursor: pointer;
+        }
+        
+        .birthday-cell.active-bday {
+            background-color: #ffe082 !important;
+            color: black !important;
+            font-weight: bold;
+        }
+        
+        th[colspan="7"] {
+            background-color: #7fb3ff;
+            color: white;
+        }
+        
+        th {
+            background-color: #cfe8ff;
+        }
+        
+        table table td:nth-child(1):not(:empty):hover {
+            background-color: var(--col-0);
+            color: white;
+        }
+        
+        table table td:nth-child(2):not(:empty):hover {
+            background-color: var(--col-1);
+            color: black;
+        }
+        
+        table table td:not(:empty):nth-child(3):hover {
+            background-color: var(--col-2);
+            color: white;
+        }
+        
+        table table td:nth-child(4):not(:empty):hover {
+            background-color: var(--col-3);
+            color: white;
+        }
+        
+        table table td:nth-child(5):not(:empty):hover {
+            background-color: var(--col-4);
+            color: white;
+        }
+        
+        table table td:nth-child(6):not(:empty):hover {
+            background-color: var(--col-5);
+            color: white;
+        }
+        
+        table table td:nth-child(7):not(:empty):hover {
+            background-color: var(--col-6);
+            color: white;
+        }
+        
+        #balloon-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9998;
+            overflow: hidden;
+        }
+        
+        .falling-balloon {
+            position: absolute;
+            top: -80px;
+            user-select: none;
+            animation: fallDown linear forwards;
+        }
+        
+        @keyframes fallDown {
+            0% {
+                transform: translateY(0) rotate(-10deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(50vh) rotate(10deg);
+            }
+            100% {
+                transform: translateY(115vh) rotate(-10deg);
+                opacity: 0.9;
+            }
+        }
+        
+        #birthday-text {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            pointer-events: none;
+            font-family: 'Arial Black', Impact, sans-serif;
+            font-size: 65px;
+            color: #ffeb3b;
+            text-align: center;
+            text-shadow: 3px 3px 0px #e91e63, -3px -3px 0px #2196f3, 0 0 20px rgba(0, 0, 0, 0.8);
+            animation: bounce 1s infinite alternate;
+        }
+        
+        @keyframes bounce {
+            from {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            to {
+                transform: translate(-50%, -55%) scale(1.1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="balloon-container"></div>
+    <div id="birthday-text">HAPPY BIRTHDAY!</div>
+
+    <h1>Calendar 2026</h1>
+
+    <table border="1" cellpadding="15">
+        <tr>
+            <td>
+                <table border="1">
+                    <tr>
+                        <th colspan="7">January</th>
+                    </tr>
+                    <tr>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>TH</th>
+                        <th>F</th>
+                        <th>S</th>
+                        <th>SU</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="holiday">1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>20</td>
+                        <td>21</td>
+                        <td>22</td>
+                        <td>23</td>
+                        <td>24</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>26</td>
+                        <td>27</td>
+                        <td>28</td>
+                        <td>29</td>
+                        <td>30</td>
+                        <td>31</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+
+            <td>
+                <table border="1">
+                    <tr>
+                        <th colspan="7">February</th>
+                    </tr>
+                    <tr>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>TH</th>
+                        <th>F</th>
+                        <th>S</th>
+                        <th>SU</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>18</td>
+                        <td>19</td>
+                        <td>20</td>
+                        <td>21</td>
+                        <td>22</td>
+                    </tr>
+                    <tr>
+                        <td>23</td>
+                        <td>24</td>
+                        <td>25</td>
+                        <td>26</td>
+                        <td>27</td>
+                        <td>28</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+
+            <td>
+                <table border="1">
+                    <tr>
+                        <th colspan="7">March</th>
+                    </tr>
+                    <tr>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>TH</th>
+                        <th>F</th>
+                        <th>S</th>
+                        <th>SU</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>18</td>
+                        <td>19</td>
+                        <td>20</td>
+                        <td>21</td>
+                        <td>22</td>
+                    </tr>
+                    <tr>
+                        <td>23</td>
+                        <td>24</td>
+                        <td>25</td>
+                        <td>26</td>
+                        <td>27</td>
+                        <td>28</td>
+                        <td>29</td>
+                    </tr>
+                    <tr>
+                        <td>30</td>
+                        <td>31</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table border="1">
+                    <tr>
+                        <th colspan="7">April</th>
+                    </tr>
+                    <tr>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>TH</th>
+                        <th>F</th>
+                        <th>S</th>
+                        <th>SU</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                        <td class="holiday">2</td>
+                        <td class="holiday">3</td>
+                        <td>4</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td class="holiday">9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>18</td>
+                        <td>19</td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>21</td>
+                        <td>22</td>
+                        <td>23</td>
+                        <td>24</td>
+                        <td>25</td>
+                        <td>26</td>
+                    </tr>
+                    <tr>
+                        <td>27</td>
+                        <td>28</td>
+                        <td>29</td>
+                        <td>30</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+
+            <td>
+                <table border="1">
+                    <tr>
+                        <th colspan="7">May</th>
+                    </tr>
+                    <tr>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>TH</th>
+                        <th>F</th>
+                        <th>S</th>
+                        <th>SU</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="holiday">1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>19</td>
+                        <td>20</td>
+                        <td>21</td>
+                        <td>22</td>
+                        <td>23</td>
+                        <td>24</td>
+                    </tr>
+                    <tr>
+                        <td>25</td>
+                        <td>26</td>
+                        <td>27</td>
+                        <td>28</td>
+                        <td>29</td>
+                        <td>30</td>
+                        <td>31</td>
+                    </tr>
+                </table>
+            </td>
+
+            <td>
+                <table border="1">
+                    <tr>
+                        <th colspan="7">June</th>
+                    </tr>
+                    <tr>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>TH</th>
+                        <th>F</th>
+                        <th>S</th>
+                        <th>SU</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td class="holiday">12</td>
+                        <td>13</td>
+                        <td>14</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>18</td>
+                        <td>19</td>
+                        <td>20</td>
+                        <td>21</td>
+                    </tr>
+                    <tr>
+                        <td>22</td>
+                        <td>23</td>
+                        <td>24</td>
+                        <td>25</td>
+                        <td>26</td>
+                        <td>27</td>
+                        <td>28</td>
+                    </tr>
+                    <tr>
+                        <td>29</td>
+                        <td>30</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table border="1">
+                    <tr>
+                        <th colspan="7">July</th>
+                    </tr>
+                    <tr>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>TH</th>
+                        <th>F</th>
+                        <th>S</th>
+                        <th>SU</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>18</td>
+                        <td>19</td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>21</td>
+                        <td>22</td>
+                        <td>23</td>
+                        <td id="july-24" class="birthday-cell" onclick="toggleBirthday(this, 'IMG_6164.JPG')">24</td>
+                        <td>25</td>
+                        <td>26</td>
+                    </tr>
+                    <tr>
+                        <td>27</td>
+                        <td>28</td>
+                        <td>29</td>
+                        <td>30</td>
+                        <td>31</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+
+            <td>
+                <table border="1">
+                    <tr>
+                        <th colspan="7">August</th>
+                    </tr>
+                    <tr>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>TH</th>
+                        <th>F</th>
+                        <th>S</th>
+                        <th>SU</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>18</td>
+                        <td>19</td>
+                        <td>20</td>
+                        <td>21</td>
+                        <td>22</td>
+                        <td>23</td>
+                    </tr>
+                    <tr>
+                        <td>24</td>
+                        <td>25</td>
+                        <td>26</td>
+                        <td>27</td>
+                        <td>28</td>
+                        <td>29</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td class="holiday">31</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+
+            <td>
+                <table border="1">
+                    <tr>
+                        <th colspan="7">September</th>
+                    </tr>
+                    <tr>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>TH</th>
+                        <th>F</th>
+                        <th>S</th>
+                        <th>SU</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>18</td>
+                        <td>19</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>21</td>
+                        <td>22</td>
+                        <td>23</td>
+                        <td>24</td>
+                        <td>25</td>
+                        <td>26</td>
+                        <td>27</td>
+                    </tr>
+                    <tr>
+                        <td>28</td>
+                        <td>29</td>
+                        <td>30</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table border="1">
+                    <tr>
+                        <th colspan="7">October</th>
+                    </tr>
+                    <tr>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>TH</th>
+                        <th>F</th>
+                        <th>S</th>
+                        <th>SU</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>20</td>
+                        <td>21</td>
+                        <td id="oct-22" class="birthday-cell" onclick="toggleBirthday(this, 'IMG_6163.JPG')">22</td>
+                        <td>23</td>
+                        <td>24</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>26</td>
+                        <td>27</td>
+                        <td>28</td>
+                        <td>29</td>
+                        <td>30</td>
+                        <td>31</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+
+            <td>
+                <table border="1">
+                    <tr>
+                        <th colspan="7">November</th>
+                    </tr>
+                    <tr>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>TH</th>
+                        <th>F</th>
+                        <th>S</th>
+                        <th>SU</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="holiday">1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>18</td>
+                        <td>19</td>
+                        <td>20</td>
+                        <td>21</td>
+                        <td>22</td>
+                    </tr>
+                    <tr>
+                        <td>23</td>
+                        <td>24</td>
+                        <td>25</td>
+                        <td>26</td>
+                        <td>27</td>
+                        <td>28</td>
+                        <td>29</td>
+                    </tr>
+                    <tr>
+                        <td class="holiday">30</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+
+            <td>
+                <table border="1">
+                    <tr>
+                        <th colspan="7">December</th>
+                    </tr>
+                    <tr>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>TH</th>
+                        <th>F</th>
+                        <th>S</th>
+                        <th>SU</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>18</td>
+                        <td>19</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>21</td>
+                        <td>22</td>
+                        <td>23</td>
+                        <td>24</td>
+                        <td class="holiday">25</td>
+                        <td>26</td>
+                        <td>27</td>
+                    </tr>
+                    <tr>
+                        <td>28</td>
+                        <td>29</td>
+                        <td class="holiday">30</td>
+                        <td>31</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+
+    <script>
+        var activeElement = null;
+        var balloonInterval = null;
+
+        function createBalloon() {
+            var container = document.getElementById('balloon-container');
+            var balloon = document.createElement('div');
+            balloon.className = 'falling-balloon';
+            balloon.innerText = '🎈';
+
+            var size = Math.floor(Math.random() * 35) + 30;
+            var leftPos = Math.random() * 95;
+            var duration = (Math.random() * 3) + 3;
+            var hue = Math.floor(Math.random() * 360);
+
+            balloon.style.fontSize = size + 'px';
+            balloon.style.left = leftPos + 'vw';
+            balloon.style.animationDuration = duration + 's';
+            balloon.style.filter = 'hue-rotate(' + hue + 'deg)';
+
+            container.appendChild(balloon);
+
+            setTimeout(function() {
+                balloon.remove();
+            }, duration * 1000);
+        }
+
+        function stopCelebration() {
+            var body = document.body;
+            var container = document.getElementById('balloon-container');
+            var bdayText = document.getElementById('birthday-text');
+
+            body.style.backgroundImage = "none";
+            body.style.backgroundColor = "#dff3f4";
+            bdayText.style.display = "none";
+
+            if (activeElement) {
+                activeElement.classList.remove('active-bday');
+                activeElement = null;
+            }
+
+            clearInterval(balloonInterval);
+            container.innerHTML = '';
+        }
+
+        function toggleBirthday(element, imageUrl) {
+
+            if (activeElement === element) {
+                stopCelebration();
+                return;
+            }
+
+
+            stopCelebration();
+
+
+            activeElement = element;
+            element.classList.add('active-bday');
+
+            var body = document.body;
+            var bdayText = document.getElementById('birthday-text');
+
+            body.style.backgroundImage = "url('" + imageUrl + "')";
+            bdayText.style.display = "block";
+
+            for (var i = 0; i < 15; i++) {
+                setTimeout(createBalloon, i * 150);
+            }
+
+            balloonInterval = setInterval(createBalloon, 300);
+        }
+    </script>
+
+</body>
+
+</html>
